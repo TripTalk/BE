@@ -1,3 +1,4 @@
+# ✈️ 고급모바일프로그래밍 프로젝트 - TripTalk(트립톡) Backend
 ## 🚀 Git Flow
 - `main`
     - 프로젝트 최종 merge
