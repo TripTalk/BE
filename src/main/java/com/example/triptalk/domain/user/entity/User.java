@@ -1,9 +1,15 @@
 package com.example.triptalk.domain.user.entity;
+import com.example.triptalk.domain.tripPlan.entity.TripPlan;
 import com.example.triptalk.global.apiPayload.code.BaseEntity;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @Getter
@@ -29,4 +35,8 @@ public class User extends BaseEntity {
     private Integer plannedTravelCount = 0;
 
     private String profileImgUrl;
+
+    // 유저별 여행 계획 (저장소)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TripPlan> tripPlans = new ArrayList<>();
 }

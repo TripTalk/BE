@@ -16,7 +16,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "trip_plan")
 public class TripPlan extends BaseEntity {
 
     @Column(length = 20, nullable = false)
@@ -56,8 +55,5 @@ public class TripPlan extends BaseEntity {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    // 유저별 여행 계획 (저장소)
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<TripPlan> tripPlans = new ArrayList<>();
 }
 
