@@ -1,6 +1,8 @@
 package com.example.triptalk.domain.user.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,7 +24,7 @@ public class UserResponse {
         @Schema(description = "이메일", example = "example@naver.com")
         private String email;
 
-        @Schema(description = "닉네임", example = "잔디")
+        @Schema(description = "닉네임", example = "톡톡")
         private String nickname;
     }
 
@@ -38,7 +40,7 @@ public class UserResponse {
         @Schema(description = "이메일", example = "example@naver.com")
         private String email;
 
-        @Schema(description = "닉네임", example = "잔디")
+        @Schema(description = "닉네임", example = "톡톡")
         private String nickname;
 
         @Schema(description = "프로필 이미지 URL", example = "http://example.com/image.jpg")
@@ -48,6 +50,8 @@ public class UserResponse {
     @Getter
     @Setter
     @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
     @Schema(description = "유저 정보 조회 응답")
     public static class UserInfoDTO {
 
@@ -57,7 +61,7 @@ public class UserResponse {
         @Schema(description = "이메일", example = "example@naver.com")
         private String email;
 
-        @Schema(description = "닉네임", example = "잔디")
+        @Schema(description = "닉네임", example = "톡톡")
         private String nickname;
 
         @Schema(description = "프로필 이미지 URL", example = "http://example.com/image.jpg")
