@@ -16,7 +16,7 @@ import java.time.LocalTime;
 public class ScheduleItem extends BaseEntity {
 
     @Column(nullable = false)
-    private Integer index;
+    private Integer orderIndex;
 
     @Column(nullable = false)
     private LocalTime time;
