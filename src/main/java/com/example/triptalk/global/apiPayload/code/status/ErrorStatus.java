@@ -18,7 +18,10 @@ public enum ErrorStatus implements BaseErrorCode {
     _FORBIDDEN(HttpStatus.FORBIDDEN, "COMMON403", "금지된 요청입니다."),
 
     // 유저 관련 에러
-    USER_NOT_FOUND(HttpStatus.NOT_FOUND, "USER401", "아이디와 일치하는 사용자가 없습니다.");
+    USER_NOT_FOUND(HttpStatus.NOT_FOUND, "USER401", "아이디와 일치하는 사용자가 없습니다."),
+
+    // 여행 계획 관련 에러
+    TRIP_PLAN_NOT_FOUND(HttpStatus.NOT_FOUND, "TRIP_PLAN401", "존재하지 않는 여행 계획입니다.");
 
     private final HttpStatus httpStatus;
     private final String code;

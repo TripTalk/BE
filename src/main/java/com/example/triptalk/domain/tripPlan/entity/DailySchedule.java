@@ -27,6 +27,8 @@ public class DailySchedule extends BaseEntity {
     private TripPlan tripPlan;
 
     @OneToMany(mappedBy = "dailySchedule", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private List<ScheduleItem> scheduleItems = new ArrayList<>();
 }
+
 
