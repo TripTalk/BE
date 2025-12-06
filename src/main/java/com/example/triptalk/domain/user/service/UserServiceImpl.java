@@ -5,7 +5,6 @@ import com.example.triptalk.domain.user.dto.UserResponse;
 import com.example.triptalk.domain.user.entity.User;
 import com.example.triptalk.domain.user.repository.UserRepository;
 import com.example.triptalk.global.apiPayload.code.status.ErrorStatus;
-import com.example.triptalk.global.apiPayload.exception.GeneralException;
 import com.example.triptalk.global.apiPayload.exception.handler.ErrorHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final UserConverter userConverter;
 
     @Override
     public UserResponse.UserInfoDTO getUserInfo(Long userId) {
@@ -27,7 +25,7 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new ErrorHandler(ErrorStatus.USER_NOT_FOUND));
 
         // 2. 응답 DTO 변환 및 반환
-        return userConverter.toUserInfoDTO(user);
+        return UserConverter.toUserInfoDTO(user);
     }
 }
 
