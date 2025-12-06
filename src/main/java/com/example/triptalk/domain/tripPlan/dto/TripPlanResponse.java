@@ -152,4 +152,59 @@ public class TripPlanResponse {
         private String content;
 
     }
+
+    @Getter
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Schema(description = "여행 일정 목록 조회 응답 (커서 기반 슬라이스)")
+    public static class TripPlanSliceDTO {
+
+        @Schema(description = "여행 일정 ID", example = "1")
+        private Long id;
+
+        @Schema(description = "여행 제목", example = "제주도 3박 4일 힐링 & 자연 여행")
+        private String title;
+
+        @Schema(description = "교통편 목록")
+        private List<TransportationDTO> transportations;
+
+        @Schema(description = "숙소 목록")
+        private List<AccommodationDTO> accommodations;
+
+        @Schema(description = "시작일", example = "2025-03-15")
+        private LocalDate startDate;
+
+        @Schema(description = "종료일", example = "2025-03-18")
+        private LocalDate endDate;
+
+        @Schema(description = "상태", example = "PLANNED")
+        private String status;
+
+        @Schema(description = "대표 이미지 URL", example = "https://example.com/images/jeju_trip.jpg")
+        private String imageUrl;
+    }
+
+    @Getter
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Schema(description = "여행 일정 목록 조회 응답 (저장소)")
+    public static class TripPlanListResultDTO {
+
+        @Schema(description = "여행 일정 목록")
+        private List<TripPlanSliceDTO> tripPlanList;
+
+        @Schema(description = "현재 페이지의 여행 일정 개수", example = "10")
+        private Integer tripPlanListSize;
+
+        @Schema(description = "페이지 처음 여부", example = "true")
+        private Boolean isFirst;
+
+        @Schema(description = "다음 페이지가 있는지 여부", example = "true")
+        private Boolean hasNext;
+
+        @Schema(description = "다음 커서 ID (무한스크롤용)", example = "1")
+        private Long nextCursorId;
+    }
 }

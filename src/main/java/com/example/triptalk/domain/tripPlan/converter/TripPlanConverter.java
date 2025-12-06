@@ -3,6 +3,7 @@ package com.example.triptalk.domain.tripPlan.converter;
 import com.example.triptalk.domain.tripPlan.dto.TripPlanResponse;
 import com.example.triptalk.domain.tripPlan.entity.*;
 import com.example.triptalk.domain.tripPlan.enums.TravelStyle;
+import org.springframework.data.domain.Slice;
 
 import java.util.HashSet;
 import java.util.List;
@@ -89,6 +90,49 @@ public class TripPlanConverter {
                         .content(h.getContent())
                         .build())
                 .toList();
+    }
+
+    /**
+     * TripPlan 엔티티를 TripPlanSliceDTO로 변환
+     * - 저장소 조회(목록)에 필요한 필드만 포함
+     */
+    public static TripPlanResponse.TripPlanSliceDTO toTripPlanSliceDTO(
+            TripPlan tripPlan,
+            List<TripTransportation> transportations,
+            List<TripAccommodation> accommodations
+    ){
+        return TripPlanResponse.TripPlanSliceDTO.builder()
+                .id(tripPlan.getId())
+                .title(tripPlan.getTitle())
+                .transportations(toTransportationDTO(transportations))
+                .accommodations(toAccommodationDTO(accommodations))
+                .startDate(tripPlan.getStartDate())
+                .endDate(tripPlan.getEndDate())
+                .status(tripPlan.getStatus().toString())
+                .imageUrl(tripPlan.getImgUrl())
+                .build();
+    }
+
+    /**
+     * Slice<TripPlan>과 관련 데이터를 TripPlanListResultDTO로 변환
+     * - 커서 기반 페이징 메타데이터 포함
+     */
+    public static TripPlanResponse.TripPlanListResultDTO toTripPlanListResultDTO(
+            Slice<TripPlan> slice,
+            List<TripPlanResponse.TripPlanSliceDTO> tripPlanList
+    ) {
+        // 다음 커서 ID는 마지막 항목의 ID
+        Long nextCursorId = tripPlanList.isEmpty() ?
+                null :
+                tripPlanList.getLast().getId();
+
+        return TripPlanResponse.TripPlanListResultDTO.builder()
+                .tripPlanList(tripPlanList)
+                .tripPlanListSize(tripPlanList.size())
+                .isFirst(slice.isFirst())
+                .hasNext(slice.hasNext())
+                .nextCursorId(nextCursorId)
+                .build();
     }
 }
 
