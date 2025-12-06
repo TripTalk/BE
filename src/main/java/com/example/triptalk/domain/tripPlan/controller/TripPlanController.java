@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/trip-plans")
+@RequestMapping("/api/trip-plan")
 @RequiredArgsConstructor
 @Tag(name = "여행 일정 API", description = "여행 일정 관련 API")
 public class TripPlanController {
