@@ -4,7 +4,6 @@ public enum ThemeType {
     NATURE,
     SEA,
     CULTURE,
-    FOOD,
     HEALING,
     HISTORY
 }
