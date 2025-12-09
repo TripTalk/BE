@@ -41,5 +41,15 @@ public class TripPlanController {
         TripPlanResponse.TripPlanListResultDTO response = tripPlanService.getMyTripPlans(1L, status, cursorId);
         return ApiResponse.onSuccess(response);
     }
-}
 
+    @PatchMapping("/{tripPlanId}/traveled")
+    @Operation(summary = "여행 상태 완료 처리", description = "여행 계획의 상태를 PLANNED에서 TRAVELED로 변경합니다.")
+    public ApiResponse<TripPlanResponse.TripPlanStatusDTO> markTripPlanAsTraveled(
+            @Parameter(description = "tripPlan ID", example = "1", required = true)
+            @PathVariable Long tripPlanId
+    ) {
+        // 인증 구현 후 SecurityContext에서 로그인한 userId 가져오기
+        TripPlanResponse.TripPlanStatusDTO response = tripPlanService.changeTripPlanStatusToTraveled(tripPlanId, 1L);
+        return ApiResponse.onSuccess(response);
+    }
+}

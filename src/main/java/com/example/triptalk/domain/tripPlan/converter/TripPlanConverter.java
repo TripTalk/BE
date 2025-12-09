@@ -134,5 +134,14 @@ public class TripPlanConverter {
                 .nextCursorId(nextCursorId)
                 .build();
     }
-}
 
+    /**
+     * TripPlan 엔티티를 TripPlanStatusDTO로 변환
+     */
+    public static TripPlanResponse.TripPlanStatusDTO toTripPlanStatusDTO(TripPlan tripPlan) {
+        return TripPlanResponse.TripPlanStatusDTO.builder()
+                .id(tripPlan.getId())
+                .status(tripPlan.getStatus().name())
+                .build();
+    }
+}

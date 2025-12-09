@@ -21,7 +21,8 @@ public enum ErrorStatus implements BaseErrorCode {
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "USER401", "아이디와 일치하는 사용자가 없습니다."),
 
     // 여행 계획 관련 에러
-    TRIP_PLAN_NOT_FOUND(HttpStatus.NOT_FOUND, "TRIP_PLAN401", "존재하지 않는 여행 계획입니다.");
+    TRIP_PLAN_NOT_FOUND(HttpStatus.NOT_FOUND, "TRIP_PLAN401", "존재하지 않는 여행 계획입니다."),
+    TRIP_PLAN_ALREADY_TRAVELED(HttpStatus.BAD_REQUEST, "TRIP_PLAN402", "이미 완료된(Traveled) 여행 계획입니다.");
 
     private final HttpStatus httpStatus;
     private final String code;
