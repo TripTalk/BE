@@ -71,7 +71,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: 22
           script: |
-            cd ~/app
+            cd ~/BE_SpringBoot
 
             # 기존 컨테이너 정리
             docker-compose -f docker-compose.yml down || true
