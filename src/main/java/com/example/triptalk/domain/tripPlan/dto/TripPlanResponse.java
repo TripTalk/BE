@@ -207,4 +207,18 @@ public class TripPlanResponse {
         @Schema(description = "다음 커서 ID (무한스크롤용)", example = "1")
         private Long nextCursorId;
     }
+
+    @Getter
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Schema(description = "상태 변경 응답 (TripPlan id와 status)")
+    public static class TripPlanStatusDTO {
+
+        @Schema(description = "여행 일정 ID", example = "1")
+        private Long id;
+
+        @Schema(description = "상태", example = "TRAVELED")
+        private String status;
+    }
 }
