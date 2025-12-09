@@ -10,5 +10,7 @@ public interface TripPlanService {
 
     // 저장소 조회 (status별 커서 기반 무한스크롤)
     TripPlanResponse.TripPlanListResultDTO getMyTripPlans(Long userId, TripStatus status, Long cursorId);
-}
 
+    // 여행 상태 변경: PLANNED -> TRAVELED
+    TripPlanResponse.TripPlanStatusDTO changeTripPlanStatusToTraveled(Long tripPlanId, Long userId);
+}

@@ -69,5 +69,28 @@ public class TripPlanServiceImpl implements TripPlanService {
         // 3. dto 변환 및 반환
         return TripPlanConverter.toTripPlanListResultDTO(slice, tripPlanListWithDetails);
     }
-}
 
+    @Override
+    @Transactional
+    public TripPlanResponse.TripPlanStatusDTO changeTripPlanStatusToTraveled(Long tripPlanId, Long userId) {
+        // 1. 조회
+        TripPlan tripPlan = tripPlanRepository.findWithAllById(tripPlanId)
+                .orElseThrow(() -> new ErrorHandler(ErrorStatus.TRIP_PLAN_NOT_FOUND));
+
+        // 2. 권한 확인
+        if (!tripPlan.getUser().getId().equals(userId)) {
+            throw new ErrorHandler(ErrorStatus._FORBIDDEN);
+        }
+
+        // 3. 상태 확인
+        if (tripPlan.getStatus() == TripStatus.TRAVELED) {
+            throw new ErrorHandler(ErrorStatus.TRIP_PLAN_ALREADY_TRAVELED);
+        }
+
+        // 4. 상태 변경 및 저장
+        tripPlan.setStatus(TripStatus.TRAVELED);
+        tripPlanRepository.save(tripPlan);
+
+        return TripPlanConverter.toTripPlanStatusDTO(tripPlan);
+    }
+}
