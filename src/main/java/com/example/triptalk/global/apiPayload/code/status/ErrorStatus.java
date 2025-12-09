@@ -20,6 +20,13 @@ public enum ErrorStatus implements BaseErrorCode {
     // 유저 관련 에러
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "USER401", "아이디와 일치하는 사용자가 없습니다."),
 
+    // 인증 관련 에러
+    AUTH_DUPLICATE_EMAIL(HttpStatus.CONFLICT, "AUTH401", "이미 존재하는 이메일입니다."),
+    AUTH_INVALID_PASSWORD(HttpStatus.UNAUTHORIZED, "AUTH402", "비밀번호가 일치하지 않습니다."),
+    AUTH_INVALID_TOKEN(HttpStatus.UNAUTHORIZED, "AUTH403", "유효하지 않은 토큰입니다."),
+    AUTH_EXPIRED_TOKEN(HttpStatus.UNAUTHORIZED, "AUTH404", "만료된 토큰입니다."),
+    AUTH_TOKEN_NOT_FOUND(HttpStatus.UNAUTHORIZED, "AUTH405", "저장되지 않은 Refresh Token입니다."),
+
     // 여행 계획 관련 에러
     TRIP_PLAN_NOT_FOUND(HttpStatus.NOT_FOUND, "TRIP_PLAN401", "존재하지 않는 여행 계획입니다."),
     TRIP_PLAN_ALREADY_TRAVELED(HttpStatus.BAD_REQUEST, "TRIP_PLAN402", "이미 완료된(Traveled) 여행 계획입니다.");
