@@ -4,9 +4,11 @@ import com.example.triptalk.domain.tripPlan.dto.TripPlanResponse;
 import com.example.triptalk.domain.tripPlan.enums.TripStatus;
 import com.example.triptalk.domain.tripPlan.service.TripPlanService;
 import com.example.triptalk.global.apiPayload.ApiResponse;
+import com.example.triptalk.global.security.AuthUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,15 +19,17 @@ import org.springframework.web.bind.annotation.*;
 public class TripPlanController {
 
     private final TripPlanService tripPlanService;
+    private final AuthUtil authUtil;
 
     @GetMapping("/{tripPlanId}")
     @Operation(summary = "여행 일정 조회", description = "tripPlanId로 여행 일정을 조회합니다.")
     public ApiResponse<TripPlanResponse.TripPlanDTO> getTripPlan(
             @Parameter(description = "tripPlan ID", example = "1", required = true)
-            @PathVariable Long tripPlanId
+            @PathVariable Long tripPlanId,
+            HttpServletRequest request
     ) {
-        // 인증 구현 후 SecurityContext에서 로그인한 userId 가져오기
-        TripPlanResponse.TripPlanDTO response = tripPlanService.getTripPlan(tripPlanId, 1L);
+        Long userId = authUtil.getUserIdFromRequest(request);
+        TripPlanResponse.TripPlanDTO response = tripPlanService.getTripPlan(tripPlanId, userId);
         return ApiResponse.onSuccess(response);
     }
 
@@ -35,10 +39,11 @@ public class TripPlanController {
             @Parameter(description = "여행 상태 필터", example = "PLANNED", required = true)
             @RequestParam TripStatus status,
             @Parameter(description = "다음 커서 ID (처음 요청 시 null)", example = "null")
-            @RequestParam(required = false) Long cursorId
+            @RequestParam(required = false) Long cursorId,
+            HttpServletRequest request
     ) {
-        // 인증 구현 후 SecurityContext에서 로그인한 userId 가져오기
-        TripPlanResponse.TripPlanListResultDTO response = tripPlanService.getMyTripPlans(1L, status, cursorId);
+        Long userId = authUtil.getUserIdFromRequest(request);
+        TripPlanResponse.TripPlanListResultDTO response = tripPlanService.getMyTripPlans(userId, status, cursorId);
         return ApiResponse.onSuccess(response);
     }
 
@@ -46,10 +51,11 @@ public class TripPlanController {
     @Operation(summary = "여행 상태 완료 처리", description = "여행 계획의 상태를 PLANNED에서 TRAVELED로 변경합니다.")
     public ApiResponse<TripPlanResponse.TripPlanStatusDTO> markTripPlanAsTraveled(
             @Parameter(description = "tripPlan ID", example = "1", required = true)
-            @PathVariable Long tripPlanId
+            @PathVariable Long tripPlanId,
+            HttpServletRequest request
     ) {
-        // 인증 구현 후 SecurityContext에서 로그인한 userId 가져오기
-        TripPlanResponse.TripPlanStatusDTO response = tripPlanService.changeTripPlanStatusToTraveled(tripPlanId, 1L);
+        Long userId = authUtil.getUserIdFromRequest(request);
+        TripPlanResponse.TripPlanStatusDTO response = tripPlanService.changeTripPlanStatusToTraveled(tripPlanId, userId);
         return ApiResponse.onSuccess(response);
     }
 }
