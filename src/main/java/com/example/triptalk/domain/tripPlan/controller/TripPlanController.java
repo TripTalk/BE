@@ -58,4 +58,31 @@ public class TripPlanController {
         TripPlanResponse.TripPlanStatusDTO response = tripPlanService.changeTripPlanStatusToTraveled(tripPlanId, userId);
         return ApiResponse.onSuccess(response);
     }
+
+    @PostMapping("/from-fastapi")
+    @Operation(
+            summary = "FastAPI 생성 여행 계획 저장",
+            description = """
+                    **FastAPI에서 생성된 여행 계획을 DB에 저장합니다.**
+                    
+                    ### 📝 저장 데이터
+                    - 여행 기본 정보 (제목, 출발지, 목적지, 날짜, 예산 등)
+                    - 하이라이트 목록
+                    - 일별 상세 일정 (DailySchedule + ScheduleItem)
+                    - 교통편 정보 (출발편, 귀환편)
+                    - 숙소 정보
+                    
+                    ### 🔐 인증
+                    - Authorization 헤더에 Bearer 토큰 필요
+                    - 로그인한 사용자의 여행 계획으로 저장
+                    """
+    )
+    public ApiResponse<TripPlanResponse.TripPlanDTO> createTripPlanFromFastAPI(
+            @RequestBody com.example.triptalk.domain.tripPlan.dto.TripPlanRequest.CreateFromFastAPIDTO request,
+            HttpServletRequest httpRequest
+    ) {
+        Long userId = authUtil.getUserIdFromRequest(httpRequest);
+        TripPlanResponse.TripPlanDTO response = tripPlanService.createTripPlanFromFastAPI(userId, request);
+        return ApiResponse.onSuccess(response);
+    }
 }
