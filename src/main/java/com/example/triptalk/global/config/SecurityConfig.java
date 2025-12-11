@@ -45,6 +45,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/flights/**").permitAll()
                         // 호텔 조회는 비회원도 가능
                         .requestMatchers("/api/accommodations/**").permitAll()
+                        // 여행 일정 생성용 FastAPI 연동 엔드포인트 허용
+                        .requestMatchers("/api/trip-plan/from-fastapi").permitAll()
                         // Swagger UI 접근 허용
                         .requestMatchers(
                                 "/swagger-ui/**",
