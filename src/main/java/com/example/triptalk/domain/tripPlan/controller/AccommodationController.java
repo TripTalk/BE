@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/accommodations")
 @RequiredArgsConstructor
-@Tag(name = "숙소 API", description = "추천 숙소 조회 (매주 업데이트)")
+@Tag(name = "숙소 API", description = "추천 숙소 조회 관련 API")
 public class AccommodationController {
 
     private final AccommodationService accommodationService;
