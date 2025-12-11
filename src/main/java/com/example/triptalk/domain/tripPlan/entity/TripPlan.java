@@ -18,13 +18,13 @@ import java.util.Set;
 @Entity
 public class TripPlan extends BaseEntity {
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 100, nullable = false)
     private String title;
 
-    @Column(length = 10, nullable = false)
+    @Column(length = 50, nullable = false)
     private String destination;
 
-    @Column(length = 10, nullable = false)
+    @Column(length = 50, nullable = false)
     private String departure;
 
     @Column(nullable = false)
@@ -33,10 +33,10 @@ public class TripPlan extends BaseEntity {
     @Column(nullable = false)
     private LocalDate endDate;
 
-    @Column(length = 30, nullable = false)
+    @Column(length = 50, nullable = false)
     private String companions;
 
-    @Column(length = 10, nullable = false)
+    @Column(length = 30, nullable = false)
     private String budget;
 
     @ElementCollection(fetch = FetchType.LAZY)

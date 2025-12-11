@@ -12,10 +12,10 @@ import lombok.*;
 @Entity
 public class TripAccommodation extends BaseEntity {
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 100, nullable = false)
     private String name;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 100, nullable = false)
     private String address;
 
     @Column(nullable = false)

@@ -12,14 +12,14 @@ import lombok.*;
 @Entity
 public class TripTransportation extends BaseEntity {
 
-    @Column(length = 10, nullable = false)
+    @Column(length = 50, nullable = false)
     private String origin;
 
-    @Column(length = 10, nullable = false)
+    @Column(length = 50, nullable = false)
     private String destination;
 
-    @Column(length = 10, nullable = false)
-    private String name;
+    @Column(name = "airline_name", length = 50, nullable = false)
+    private String airlineName;
 
     @Column(nullable = false)
     private Integer price;
