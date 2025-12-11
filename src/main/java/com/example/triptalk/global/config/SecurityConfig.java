@@ -41,8 +41,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         // 여행지 조회는 비회원도 가능
                         .requestMatchers("/api/trip-places/**").permitAll()
-                        // 항공권 검색은 비회원도 가능
+                        // 항공권 조회는 비회원도 가능
                         .requestMatchers("/api/flights/**").permitAll()
+                        // 호텔 조회는 비회원도 가능
+                        .requestMatchers("/api/accommodations/**").permitAll()
                         // Swagger UI 접근 허용
                         .requestMatchers(
                                 "/swagger-ui/**",
