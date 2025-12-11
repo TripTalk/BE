@@ -21,10 +21,10 @@ public class ScheduleItem extends BaseEntity {
     @Column(nullable = false)
     private LocalTime time;
 
-    @Column(length = 10, nullable = false)
+    @Column(length = 50, nullable = false)
     private String title;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 100, nullable = false)
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -12,7 +12,7 @@ import lombok.*;
 @Entity
 public class TripHighlight extends BaseEntity {
 
-    @Column(length = 15, nullable = false)
+    @Column(length = 100, nullable = false)
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
