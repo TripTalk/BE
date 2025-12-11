@@ -72,10 +72,6 @@ public class TripPlanController {
                     - 일별 상세 일정 (DailySchedule + ScheduleItem)
                     - 교통편 정보 (출발편, 귀환편)
                     - 숙소 정보
-                    
-                    ### 🔐 인증
-                    - Authorization 헤더에 Bearer 토큰 필요
-                    - 로그인한 사용자의 여행 계획으로 저장
                     """
     )
     public ApiResponse<TripPlanResponse.TripPlanDTO> createTripPlanFromFastAPI(
