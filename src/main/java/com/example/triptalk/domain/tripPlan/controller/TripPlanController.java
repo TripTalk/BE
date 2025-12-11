@@ -1,5 +1,6 @@
 package com.example.triptalk.domain.tripPlan.controller;
 
+import com.example.triptalk.domain.tripPlan.dto.TripPlanRequest;
 import com.example.triptalk.domain.tripPlan.dto.TripPlanResponse;
 import com.example.triptalk.domain.tripPlan.enums.TripStatus;
 import com.example.triptalk.domain.tripPlan.service.TripPlanService;
@@ -78,10 +79,18 @@ public class TripPlanController {
                     """
     )
     public ApiResponse<TripPlanResponse.TripPlanDTO> createTripPlanFromFastAPI(
-            @RequestBody com.example.triptalk.domain.tripPlan.dto.TripPlanRequest.CreateFromFastAPIDTO request,
+            @RequestBody TripPlanRequest.CreateFromFastAPIDTO request,
             HttpServletRequest httpRequest
     ) {
-        Long userId = authUtil.getUserIdFromRequest(httpRequest);
+
+        // 인증이 없어도 동작하도록 변경
+        Long userId = null;
+        try {
+            userId = authUtil.getUserIdFromRequest(httpRequest);
+        } catch (Exception e) {
+            // 인증 없음 → 익명 사용자로 처리하거나 무시
+        }
+
         TripPlanResponse.TripPlanDTO response = tripPlanService.createTripPlanFromFastAPI(userId, request);
         return ApiResponse.onSuccess(response);
     }
