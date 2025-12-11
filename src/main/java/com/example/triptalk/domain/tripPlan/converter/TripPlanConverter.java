@@ -51,7 +51,7 @@ public class TripPlanConverter {
                 .map(t -> TripPlanResponse.TransportationDTO.builder()
                         .origin(t.getOrigin())
                         .destination(t.getDestination())
-                        .name(t.getName())
+                        .name(t.getAirlineName())
                         .price(t.getPrice())
                         .build())
                 .toList();
@@ -143,5 +143,151 @@ public class TripPlanConverter {
                 .id(tripPlan.getId())
                 .status(tripPlan.getStatus().name())
                 .build();
+    }
+
+    // ========== FastAPI 데이터 변환 메서드 ==========
+
+    /**
+     * FastAPI 요청 DTO를 TripPlan 엔티티로 변환
+     */
+    public static TripPlan toTripPlanEntity(
+            com.example.triptalk.domain.tripPlan.dto.TripPlanRequest.CreateFromFastAPIDTO request,
+            com.example.triptalk.domain.user.entity.User user
+    ) {
+        // TravelStyles 한글 문자열을 Enum으로 변환
+        Set<TravelStyle> travelStyleSet = new HashSet<>();
+        if (request.getTravelStyles() != null) {
+            for (String styleStr : request.getTravelStyles()) {
+                TravelStyle style = mapKoreanToTravelStyle(styleStr);
+                if (style != null) {
+                    travelStyleSet.add(style);
+                }
+            }
+        }
+
+        return TripPlan.builder()
+                .title(request.getTitle())
+                .destination(request.getDestination())
+                .departure(request.getDeparture())
+                .startDate(request.getStartDate())
+                .endDate(request.getEndDate())
+                .companions(request.getCompanions())
+                .budget(request.getBudget())
+                .travelStyles(travelStyleSet)
+                .imgUrl("https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800")
+                .status(com.example.triptalk.domain.tripPlan.enums.TripStatus.PLANNED)
+                .user(user)
+                .build();
+    }
+
+    /**
+     * 한글 문자열을 TravelStyle Enum으로 매핑
+     */
+    private static TravelStyle mapKoreanToTravelStyle(String korean) {
+        if (korean == null) {
+            return null;
+        }
+
+        return switch (korean.trim()) {
+            case "체험·액티비티" -> TravelStyle.ACTIVITY;
+            case "자연과 함께" -> TravelStyle.NATURE;
+            case "여유롭게 힐링" -> TravelStyle.HEALING;
+            case "여행지 느낌 물씬" -> TravelStyle.LOCAL_VIBE;
+            case "관광보다 먹방" -> TravelStyle.FOOD_FOCUS;
+            case "SNS 핫플레이스" -> TravelStyle.HOTPLACE;
+            case "유명 관광지는 필수" -> TravelStyle.MUST_VISIT;
+            case "문화·예술·역사" -> TravelStyle.CULTURE;
+            case "쇼핑은 열정적으로" -> TravelStyle.SHOPPING;
+            default -> null; // 매칭되지 않는 스타일은 무시
+        };
+    }
+
+
+    /**
+     * FastAPI 하이라이트 리스트를 TripHighlight 엔티티 리스트로 변환
+     */
+    public static List<TripHighlight> toTripHighlightEntities(
+            List<String> highlights,
+            TripPlan tripPlan
+    ) {
+        if (highlights == null) {
+            return List.of();
+        }
+        return highlights.stream()
+                .map(content -> TripHighlight.builder()
+                        .content(content)
+                        .tripPlan(tripPlan)
+                        .build())
+                .toList();
+    }
+
+    /**
+     * FastAPI 교통편 DTO를 TripTransportation 엔티티로 변환
+     */
+    public static TripTransportation toTripTransportationEntity(
+            com.example.triptalk.domain.tripPlan.dto.TripPlanRequest.TransportationDTO dto,
+            TripPlan tripPlan
+    ) {
+        if (dto == null) {
+            return null;
+        }
+        return TripTransportation.builder()
+                .origin(dto.getOrigin())
+                .destination(dto.getDestination())
+                .airlineName(dto.getName())
+                .airlineName(dto.getName())  // DB 호환을 위해 name 필드에도 동일한 값 저장
+                .price(dto.getPrice())
+                .tripPlan(tripPlan)
+                .build();
+    }
+
+    /**
+     * FastAPI 숙소 리스트를 TripAccommodation 엔티티 리스트로 변환
+     */
+    public static List<TripAccommodation> toTripAccommodationEntities(
+            List<com.example.triptalk.domain.tripPlan.dto.TripPlanRequest.AccommodationDTO> accommodations,
+            TripPlan tripPlan
+    ) {
+        if (accommodations == null) {
+            return List.of();
+        }
+        return accommodations.stream()
+                .map(dto -> TripAccommodation.builder()
+                        .name(dto.getName())
+                        .address(dto.getAddress())
+                        .pricePerNight(dto.getPricePerNight())
+                        .tripPlan(tripPlan)
+                        .build())
+                .toList();
+    }
+
+    /**
+     * FastAPI 일별 일정 DTO를 DailySchedule 엔티티로 변환
+     */
+    public static DailySchedule toDailyScheduleEntity(
+            com.example.triptalk.domain.tripPlan.dto.TripPlanRequest.DailyScheduleDTO dto,
+            TripPlan tripPlan
+    ) {
+        DailySchedule dailySchedule = DailySchedule.builder()
+                .day(dto.getDay())
+                .date(dto.getDate())
+                .tripPlan(tripPlan)
+                .build();
+
+        // ScheduleItems 추가
+        if (dto.getSchedules() != null) {
+            for (com.example.triptalk.domain.tripPlan.dto.TripPlanRequest.ScheduleDTO scheduleDTO : dto.getSchedules()) {
+                ScheduleItem scheduleItem = ScheduleItem.builder()
+                        .orderIndex(scheduleDTO.getOrderIndex())
+                        .time(java.time.LocalTime.parse(scheduleDTO.getTime()))
+                        .title(scheduleDTO.getTitle())
+                        .description(scheduleDTO.getDescription())
+                        .dailySchedule(dailySchedule)
+                        .build();
+                dailySchedule.getScheduleItems().add(scheduleItem);
+            }
+        }
+
+        return dailySchedule;
     }
 }
