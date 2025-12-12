@@ -80,14 +80,10 @@ public class TripPlanController {
     ) {
 
         // 인증이 없어도 동작하도록 변경
-        Long userId = null;
-        try {
-            userId = authUtil.getUserIdFromRequest(httpRequest);
-        } catch (Exception e) {
-            // 인증 없음 → 익명 사용자로 처리하거나 무시
-        }
+        Long userId = authUtil.getUserIdFromRequest(httpRequest);
+        TripPlanResponse.TripPlanDTO response =
+                tripPlanService.createTripPlanFromFastAPI(userId, request);
 
-        TripPlanResponse.TripPlanDTO response = tripPlanService.createTripPlanFromFastAPI(userId, request);
         return ApiResponse.onSuccess(response);
     }
 }
