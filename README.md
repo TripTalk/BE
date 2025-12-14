@@ -119,7 +119,7 @@ FastAPI 기반 AI 서버와 연동하여 개인 맞춤형 여행 계획을 제�
 - **주간 스케줄러** (매주 월요일 새벽 4시 자동 업데이트)
 - **커서 기반 무한스크롤** (페이지 사이즈 10개)
 - **국가별 대표 이미지 매핑**
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a8537b13-a07e-4170-b828-d76740570a2d" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/68fe8298-bf7f-48af-8d4e-032b4d3babed" />
 
 ### 5. 🏨 숙소 추천
 - **추천 숙소 조회**
