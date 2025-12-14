@@ -207,7 +207,7 @@ http://54.180.99.252:8080
 
 ### Swagger UI
 ```
-http://54.180.99.252:8080/swagger-ui/index.html
+http://52.78.55.147:8080/swagger-ui/index.html#/
 ```
 ---
 ## 🚀 설치 및 실행
