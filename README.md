@@ -83,13 +83,20 @@ FastAPI 기반 AI 서버와 연동하여 개인 맞춤형 여행 계획을 제�
 
 ## ✨ 주요 기능
 
-### 1. 🔐 사용자 인증 및 관리
+### 1. 🔐 사용자 인증
 - **회원가입/로그인** (JWT Access & Refresh Token)
 - **토큰 재발급** (Refresh Token 기반)
 - **로그아웃** (Refresh Token 삭제)
-- **사용자 정보 관리**
 
-### 2. 🗺️ AI 여행 일정 생성
+### 2. 📱 메인 화면
+
+- 여행 추천 카드 및 배너
+- 인기 여행지 소개 (제주도, 부산, 파리, 뉴욕 등)
+- 카테고리별 여행 상품 탐색
+- AI 여행 플래너 바로가기
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/68fe8298-bf7f-48af-8d4e-032b4d3babed" />
+
+### 3. 🗺️ AI 여행 일정 생성
 - **FastAPI AI 서버 연동**
   - 여행 스타일 분석 (체험·액티비티, 자연, 힐링, 로컬 등 9가지)
   - 목적지, 기간, 예산, 동행인 기반 맞춤 일정 생성
@@ -100,7 +107,7 @@ FastAPI 기반 AI 서버와 연동하여 개인 맞춤형 여행 계획을 제�
   - 여행 하이라이트
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a951ba00-18d7-4da0-ad47-86a9f17c41e3" />
 
-### 3. 📋 여행 계획 관리 (저장소)
+### 4. 📋 여행 계획 관리 (저장소)
 - **상태별 조회** 
   - PLANNED (계획 중)
   - TRAVELED (여행 완료)
@@ -110,7 +117,7 @@ FastAPI 기반 AI 서버와 연동하여 개인 맞춤형 여행 계획을 제�
   - 전체 일정, 교통편, 숙소, 하이라이트 포함
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/30622c1b-8bbf-47ea-9d20-bd8407af553b" />
 
-### 4. ✈️ 항공권 조회
+### 5. ✈️ 항공권 조회
 - **Amadeus API 연동**
 - **인기 노선 자동 조회**
   - 국내: 김포↔제주, 김포↔부산
@@ -119,17 +126,15 @@ FastAPI 기반 AI 서버와 연동하여 개인 맞춤형 여행 계획을 제�
 - **주간 스케줄러** (매주 월요일 새벽 4시 자동 업데이트)
 - **커서 기반 무한스크롤** (페이지 사이즈 10개)
 - **국가별 대표 이미지 매핑**
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/68fe8298-bf7f-48af-8d4e-032b4d3babed" />
 
-### 5. 🏨 숙소 추천
+### 6. 🏨 숙소 추천
 - **추천 숙소 조회**
   - 18개 도시 × 3개 호텔
 - **다양한 체크인/체크아웃 날짜** (오늘 +7~14일)
 - **커서 기반 무한스크롤** (페이지 사이즈 10개)
-- **호텔별 고유 이미지**
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/99fcae83-5400-473b-ab52-bfaaa90d0de3" />
 
-### 6. 🌴 여행지 추천
+### 7. 🌴 여행지 추천
 - **테마별 조회**
   - NATURE (자연)
   - SEA (바다)
@@ -137,9 +142,15 @@ FastAPI 기반 AI 서버와 연동하여 개인 맞춤형 여행 계획을 제�
   - HEALING (힐링)
   - HISTORY (역사)
 - **커서 기반 무한스크롤** (페이지 사이즈 10개)
-- **국내/해외 여행지 100개** (하드코딩)
-- **실제 여행지 이미지 URL**
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/7256a998-fe15-4baa-b0aa-ae38d60071bb" />
+
+### 👤 사용자 정보 관리
+
+- 개인 프로필 관리
+- 여행 통계 (완료한 여행, 계획 중인 여행, 적립 포인트)
+- 뱃지 시스템 (첫 여행, 시간 마니아, 한번가 등)
+- 계정 설정 및 개인정보 변경
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3d24365e-898b-4e1f-8f2e-8626720090c7" />
 
 ---
 
