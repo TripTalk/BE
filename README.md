@@ -1,20 +1,73 @@
 # 🌏 TripTalk - AI 기반 여행 계획 플랫폼
 
-> FastAPI AI와 연동된 맞춤형 여행 일정 생성 및 관리 서비스
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/385c2e64-02f5-45a6-8868-732c572acc85" />
 
-## 📋 목차
-- [프로젝트 개요](#-프로젝트-개요)
-- [주요 기능](#-주요-기능)
-- [기술 스택](#-기술-스택)
-- [시스템 아키텍처](#-시스템-아키텍처)
-- [ERD](#-erd)
-- [API 명세](#-api-명세)
-- [설치 및 실행](#-설치-및-실행)
-- [배포](#-배포)
+## 👥 팀 정보
+<div align="center">
+  <table>
+  <tr>
+    <!-- 사진 + 이름 행 -->
+    <td align="center">
+      <a href="https://github.com/Yujin">
+        <img
+          width="170"
+          src="https://avatars.githubusercontent.com/Yujin1219"
+          alt="유진"
+        />
+        <br />
+        유진
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/jooyoi">
+        <img
+          width="170"
+          src="https://avatars.githubusercontent.com/jooyoi"
+          alt="홍주영"
+        />
+        <br />
+        홍주영
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/ys1217-gg">
+        <img
+          width="170"
+          src="https://avatars.githubusercontent.com/ys1217-gg"
+          alt="황요성"
+        />
+        <br />
+        황요성
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/davidcho0701">
+        <img
+          width="170"
+          src="https://avatars.githubusercontent.com/davidcho0701"
+          alt="조성빈"
+        />
+        <br />
+        조성빈
+      </a>
+    </td>
+  </tr>
+
+  <!-- 역할 행 -->
+  <tr>
+    <td align="center"><b>Lead, BE</b></td>
+    <td align="center"><b>AI</b></td>
+    <td align="center"><b>FE</b></td>
+    <td align="center"><b>FE</b></td>
+  </tr>
+</table>
+
+</div>
 
 ---
 
 ## 🎯 프로젝트 개요
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/b4468b0b-ea93-4951-ad74-1953a22be098" />
 
 **TripTalk**은 사용자의 여행 스타일과 선호도를 기반으로 AI가 최적의 여행 일정을 생성해주는 플랫폼입니다. 
 FastAPI 기반 AI 서버와 연동하여 개인 맞춤형 여행 계획을 제공하며, 
@@ -45,6 +98,7 @@ FastAPI 기반 AI 서버와 연동하여 개인 맞춤형 여행 계획을 제�
   - 교통편 정보 (출발/귀환)
   - 숙소 정보
   - 여행 하이라이트
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a951ba00-18d7-4da0-ad47-86a9f17c41e3" />
 
 ### 3. 📋 여행 계획 관리 (저장소)
 - **상태별 조회** 
@@ -54,6 +108,7 @@ FastAPI 기반 AI 서버와 연동하여 개인 맞춤형 여행 계획을 제�
 - **여행 상태 변경** (PLANNED → TRAVELED)
 - **여행 계획 상세 조회**
   - 전체 일정, 교통편, 숙소, 하이라이트 포함
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/30622c1b-8bbf-47ea-9d20-bd8407af553b" />
 
 ### 4. ✈️ 항공권 조회
 - **Amadeus API 연동**
@@ -64,6 +119,7 @@ FastAPI 기반 AI 서버와 연동하여 개인 맞춤형 여행 계획을 제�
 - **주간 스케줄러** (매주 월요일 새벽 4시 자동 업데이트)
 - **커서 기반 무한스크롤** (페이지 사이즈 10개)
 - **국가별 대표 이미지 매핑**
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a8537b13-a07e-4170-b828-d76740570a2d" />
 
 ### 5. 🏨 숙소 추천
 - **추천 숙소 조회**
@@ -71,6 +127,7 @@ FastAPI 기반 AI 서버와 연동하여 개인 맞춤형 여행 계획을 제�
 - **다양한 체크인/체크아웃 날짜** (오늘 +7~14일)
 - **커서 기반 무한스크롤** (페이지 사이즈 10개)
 - **호텔별 고유 이미지**
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/99fcae83-5400-473b-ab52-bfaaa90d0de3" />
 
 ### 6. 🌴 여행지 추천
 - **테마별 조회**
@@ -82,6 +139,7 @@ FastAPI 기반 AI 서버와 연동하여 개인 맞춤형 여행 계획을 제�
 - **커서 기반 무한스크롤** (페이지 사이즈 10개)
 - **국내/해외 여행지 100개** (하드코딩)
 - **실제 여행지 이미지 URL**
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/7256a998-fe15-4baa-b0aa-ae38d60071bb" />
 
 ---
 
@@ -136,6 +194,7 @@ FastAPI 기반 AI 서버와 연동하여 개인 맞춤형 여행 계획을 제�
 ---
 
 ## 🗂 ERD
+<img width="1253" height="1726" alt="image" src="https://github.com/user-attachments/assets/39d34bc6-ce62-47a7-9acd-dafe829f3497" />
 
 ---
 
@@ -282,10 +341,6 @@ src/main/java/com/example/triptalk/
 │
 └── TriptalkApplication.java
 ```
-
----
-
-## 👥 팀 정보
 
 ---
 
