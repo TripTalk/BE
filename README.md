@@ -144,7 +144,7 @@ FastAPI 기반 AI 서버와 연동하여 개인 맞춤형 여행 계획을 제�
 - **커서 기반 무한스크롤** (페이지 사이즈 10개)
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/7256a998-fe15-4baa-b0aa-ae38d60071bb" />
 
-### 👤 사용자 정보 관리
+### 8. 👤 사용자 정보 관리
 
 - 개인 프로필 관리
 - 여행 통계 (완료한 여행, 계획 중인 여행, 적립 포인트)
