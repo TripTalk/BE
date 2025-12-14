@@ -174,7 +174,7 @@ public class TripPlanConverter {
                 .companions(request.getCompanions())
                 .budget(request.getBudget())
                 .travelStyles(travelStyleSet)
-                .imgUrl("https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800")
+                .imgUrl("https://plus.unsplash.com/premium_photo-1661914240950-b0124f20a5c1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
                 .status(com.example.triptalk.domain.tripPlan.enums.TripStatus.PLANNED)
                 .user(user)
                 .build();
