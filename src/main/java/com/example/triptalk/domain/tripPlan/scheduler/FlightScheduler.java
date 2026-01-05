@@ -107,8 +107,8 @@ public class FlightScheduler {
      * Cron: 초 분 시 일 월 요일
      * 0 0 3 * * MON = 매주 월요일 3시
      */
-    @Scheduled(cron = "0 0 3 * * MON")
-    @Transactional
+    // @Scheduled(cron = "0 0 3 * * MON")
+    // @Transactional
     public void updateFlights() {
         log.info("=== 항공권 데이터 업데이트 시작 ===");
 
@@ -165,8 +165,8 @@ public class FlightScheduler {
      * 애플리케이션 시작 시 초기 데이터 로드
      * (최초 실행 또는 DB가 비어있을 때)
      */
-    @Scheduled(initialDelay = 10000, fixedDelay = Long.MAX_VALUE) // 시작 10초 후 1회만 실행
-    @Transactional
+    // @Scheduled(initialDelay = 10000, fixedDelay = Long.MAX_VALUE) // 시작 10초 후 1회만 실행
+    // @Transactional
     public void initialLoadFlights() {
         long count = flightRepository.count();
 
